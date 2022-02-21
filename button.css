@@ -1,0 +1,23 @@
+.button {
+  display: block;
+  position: absolute;
+  top: 50px;
+  right: 50%;
+  left: 50%;
+}
+.button div {
+  height: 10px;
+  width: 50px;
+  background-color: black;
+  margin: 4px;
+  cursor: pointer;
+}
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-9px, 10px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-9px, -10px);
+}

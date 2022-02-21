@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  margin-right: 2vh;
+}
+header {
+  display: flex;
+  justify-content: flex-end;
+
+  font-size: xx-large;
+}
+#search {
+  width: 200px;
+  border-radius: 4px;
+  background-color: whitesmoke;
+  padding-right: 50px;
+  margin-left: 2vh;
+  margin-top: 2vh;
+  
+}
+
+.h-line {
+  margin: 2vh;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-end;
+}

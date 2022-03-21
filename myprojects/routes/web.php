@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,3 +24,6 @@ Route::get('/master', [TestController::class, 'index']);
 Route::get('/home', [TestController::class, 'home']);
 Route::get('/login', [TestController::class, 'login']);
 Route::get('/register', [TestController::class, 'register']);
+
+Route::get('/register', [RegistrationController::class, 'create']);
+Route::post('/register', [RegistrationController::class, 'store']);

@@ -15,7 +15,12 @@
             .center {
                 display: flex;
                 justify-content: center;
+                text-decoration: none;
 
+            }
+
+            a:link {
+                text-decoration: none;
             }
 
         </style>

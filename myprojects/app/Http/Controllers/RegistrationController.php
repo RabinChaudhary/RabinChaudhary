@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+
+
 use App\Models\user;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
@@ -28,7 +33,7 @@ class RegistrationController extends Controller
         $users->firstname = $request->first_name;
         $users->lastname = $request->last_name;
         $users->email = $request->email;
-        $users->password = $request->password;
+        $users->password = Hash::make($request->password);
         $users->gender = $request->gender;
         $users->mobile = $request->mobile;
 

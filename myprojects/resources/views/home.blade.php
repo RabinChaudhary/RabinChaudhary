@@ -40,8 +40,8 @@
                     quibusdam fugiat quae impedit, ipsam vel provident culpa magni dignissimos quo in architecto officia
                     voluptatem quaerat similique? Culpa accusamus labore nihil vel optio minima fugiat?</p>
                 <div class="center">
-                    <a href="/login" class="card-link">Sign In</a>
-                    <a href="/register" class="card-link">Sign-up</a>
+                    <a href="/login" class="card-link btn btn-primary">Sign In</a>
+                    <a href="/register" class="card-link btn btn-primary">Sign-up</a>
                 </div>
             </div>
         </div>

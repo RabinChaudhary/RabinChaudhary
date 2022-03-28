@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,10 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/master', [TestController::class, 'index']);
-Route::get('/home', [TestController::class, 'home']);
-Route::get('/login', [TestController::class, 'login']);
-Route::get('/register', [TestController::class, 'register']);
+Route::get('/home',[TestController::class,'home']);
 
 Route::get('/register', [RegistrationController::class, 'create']);
-Route::post('/register', [RegistrationController::class, 'store']);
+Route::post('/register', [RegistrationController::class, 'store'])->name('register');
+
+Route::get('/login', [LoginController::class, 'create']);
+Route::post('/login', [LoginController::class, 'login'])->name('login');

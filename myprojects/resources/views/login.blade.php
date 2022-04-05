@@ -14,15 +14,15 @@
             {{ csrf_field() }}
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example1">Email address</label>
-                <input type="email" id="form2Example1" name="email" id="email"class="form-control" />
+                <label class="form-label" for="email">Email address</label>
+                <input type="email" name="email" id="email" class="form-control" />
                 <span class="error-msg center error-text"></span>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example2">Password</label>
-                <input type="password" id="form2Example2" name="password" id="password" class="form-control" />
+                <label class="form-label" for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" />
                 <span class="error-msg center error-text"></span>
             </div>
 
@@ -41,37 +41,5 @@
             </div>
 
         </form>
-        <script>
-            $(document).ready(function() {
-                $("#login-form").validate({
-                    rules: {
-
-                        email: {
-                            required: true,
-                            email: true,
-                            maxlength: 50
-                        },
-
-                        password: {
-                            required: true,
-                            minlength: 6
-
-                        }
-                    },
-                    messages: {
-                        email: {
-                            required: "Email is required",
-                            email: "Email must be a valid email address",
-                            maxlength: "Email cannot be more than 50 characters",
-                        },
-                        password: {
-                            required: "Password is required",
-                            minlength: "Password must be at least 6 characters"
-                        }
-
-                    }
-                });
-            });
-        </script>
 
     @endsection

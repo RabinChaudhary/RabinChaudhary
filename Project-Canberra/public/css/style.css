@@ -79,22 +79,37 @@ li.nav-item {
 }
 
 .card {
-   background: pink;
+    background: pink;
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
-
-.inner{
+.inner {
     overflow: hidden;
-
 }
-.inner>img{
+.inner > img {
     transition: all 1.5s ease;
 }
 
-.inner:hover>img{
+.inner:hover > img {
     transform: scale(1.2);
+}
+ul {
+    list-style: none;
+    outline: none;
+}
+li {
+    outline: none;
+}
+h2:after,h1:after,a.navlink:after {
+    display: block;
+    content: "";
+    border-bottom: solid 3px bisque;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+h2:hover:after,h1:hover:after,a.navlink:hover:after{
+    transform: scaleX(1);
 }

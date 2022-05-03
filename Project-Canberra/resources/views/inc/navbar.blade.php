@@ -80,7 +80,7 @@
                         <a href="#" class="nav-link text-dark">Contact Us</a>
                     </li>
                     <li class="">
-                        <a class="ms-auto" href="#"><button class="btn btn-success btn-lg text-light"
+                        <a class="ms-auto" href="{{url('/register')}}"><button class="btn btn-success btn-lg text-light"
                                 style="background-color:darkslategray; ">
                                 Register</button></a>
                     </li>

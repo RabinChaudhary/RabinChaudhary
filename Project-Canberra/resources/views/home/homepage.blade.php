@@ -87,7 +87,7 @@
         </a>
     </div>
 
-    <div class="section bg-light">
+    <div class="section" style="background: pink">
         <div class="container">
             <div class="text-center pt-4">
                 <p style="color:orangered;">Stories</p>
@@ -95,7 +95,7 @@
             </div>
             <div class="row g-3 mt-4 justify-content-space-around">
                 <div class="col-lg-4 col-md-6 col-12 d-flex align-items-stretch">
-                    <div class="card">
+                    <div class="card shadow-lg">
                         <div class="inner">
                             <img src="{{ asset('img/data.jpg') }}" alt="" class="card-img-top" />
 
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                    <div class="card">
+                    <div class="card shadow-lg">
                         <div class="inner">
                             <img src="{{ asset('img/web.jpg') }}" alt="" class="card-img-top" />
 
@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                    <div class="card">
+                    <div class="card shadow-lg">
                         <div class="inner">
                             <img src="{{ asset('img/cloud.jpg') }}" alt="" class="card-img-top" />
                         </div>

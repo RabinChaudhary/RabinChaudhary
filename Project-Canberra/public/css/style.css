@@ -79,7 +79,7 @@ li.nav-item {
 }
 
 .card {
-    background-color: unset;
+   background: pink;
     padding: 2rem;
     display: flex;
     flex-direction: column;

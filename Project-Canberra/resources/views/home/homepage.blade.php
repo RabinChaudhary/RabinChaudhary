@@ -42,19 +42,19 @@
             <div class="carousel-item active">
                 <div class="overlay-image" style="background:url({{ asset('img/data.jpg') }}); background-position: center;
                                     background-size: cover;"></div>
-                <div class="container" id="carousel-container">
+                <div class="container text-lg-start text-center" id="carousel-container">
                     <h1>Data Analytics</h1>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
                         necessitatibus
                         dolor
                         voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
-                    <a href="#" class="btn btn-lg btn-primary">Register Today</a>
+                    <a href="{{url('/register')}}" class="btn btn-lg btn-primary">Register Today</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="overlay-image" style="background:url({{ asset('img/web.jpg') }}); background-position: center;
                                 background-size: cover;"></div>
-                <div class="container" id="carousel-container">
+                <div class="container text-lg-start text-center" id="carousel-container">
                     <h1>Web Development</h1>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
                         necessitatibus
@@ -66,7 +66,7 @@
             <div class="carousel-item">
                 <div class="overlay-image" style="background:url({{ asset('img/cloud.jpg') }}); background-position: center;
                                 background-size: cover;"></div>
-                <div class="container" id="carousel-container">
+                <div class="container text-lg-start text-center" id="carousel-container">
 
                     <h1>Cloud Computing</h1>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
@@ -113,7 +113,7 @@
 
     </section>
 
-    <div class="section" style="background: pink">
+    <div class="section" style="background: pink; min-height:max-content;">
         <div class="container py-5">
             <div class="text-center pt-4">
                 <p style="color:orangered;">Stories</p>

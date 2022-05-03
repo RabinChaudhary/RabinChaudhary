@@ -56,7 +56,7 @@
             <div class="collapse navbar-collapse text-center" id="navmenu">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Home</a>
+                        <a href="{{url('/')}}" class="nav-link text-dark">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-dark">About Us</a>

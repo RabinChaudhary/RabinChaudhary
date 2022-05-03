@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('title', 'register page')
 @section('content')
-    <div class="container">
+    <div class="container mb-4">
         <div class="mx-auto" style="max-width:50rem; width:100%">
             <div class="bg-white rounded shadow  input-group-lg p-3 mt-5 w-lg-75">
 
                 <form action="" method="POST" >
                     <h2 class="fs-2 text-primary">Create New Account</h2>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-6 col-12">
                             <input type="text" placeholder="First Name" name="firstname" id="firstname"
                                 class="form-control my-3" autofocus>
                             <input type="email" placeholder="Email" name="email" id="email" class="form-control my-3">
@@ -19,7 +19,7 @@
 
 
                         </div>
-                        <div class="col">
+                        <div class="col-lg-6 col-12">
                             <input type="text" placeholder="Last Name" name="lastname" id="lastname"
                                 class="form-control my-3">
                             <input type="date" placeholder="Date of Birth" name="dateofbirth" id="dateofbirth"

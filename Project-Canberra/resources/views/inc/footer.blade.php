@@ -1,4 +1,4 @@
-<footer style="background: rgb(112, 14, 112);">
+<footer style="background: rgb(112, 14, 112); min-height:70%;">
     <div class="container">
         <div class="row justify-content-center pt-4">
             <div class="col">
@@ -68,10 +68,10 @@
     </div>
 
     <hr>
-    <div class="footer-bottom ">
-        <div class="container d-flex justify-content-between text-light">
+    <div class="footer-bottom m">
+        <div class="container d-flex justify-content-between align-items-center text-light">
             <cite>ABN Number : 99 631 450 210</cite>
-            <ul style="display: flex; gap:1em;">
+            <ul style="display: flex; gap:1em; margin:auto 0;">
                 <li><i class="fa-brands fa-facebook" style="font-size: 2rem;"></i></li>
                 <li><i class="fa-brands fa-github" style="font-size: 2rem;"></i></li>
                 <li><i class="fa-brands fa-linkedin" style="font-size: 2rem;"></i></li>

@@ -1,7 +1,9 @@
 p {
     font-family: "GTWalsheimPro", Helvetica, Arial, Lucida, sans-serif;
 }
-
+html{
+    height:100%;
+}
 .navbar-toggler {
     width: 20px;
     height: 20px;
@@ -102,14 +104,15 @@ ul {
 }
 li {
     outline: none;
+    line-height: 2.5em;
 }
-h2:after,h1:after,a.navlink:after {
+h2:after,h1:after {
     display: block;
     content: "";
     border-bottom: solid 3px bisque;
     transform: scaleX(0);
     transition: transform 250ms ease-in-out;
 }
-h2:hover:after,h1:hover:after,a.navlink:hover:after{
+h2:hover:after,h1:hover:after{
     transform: scaleX(1);
 }

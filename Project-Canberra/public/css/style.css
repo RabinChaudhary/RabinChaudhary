@@ -1,5 +1,5 @@
-p{
-    font-family: 'GTWalsheimPro',Helvetica,Arial,Lucida,sans-serif;
+p {
+    font-family: "GTWalsheimPro", Helvetica, Arial, Lucida, sans-serif;
 }
 
 .navbar-toggler {
@@ -78,15 +78,23 @@ li.nav-item {
     font-size: large;
 }
 
-
 .card {
-    background-color: unset;
+   background: pink;
     padding: 2rem;
-    text-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
 }
-.card > img {
-    height: 6vh;
-    width: 6vw;
 
-    margin: 0 auto 2em auto;
+
+.inner{
+    overflow: hidden;
+
+}
+.inner>img{
+    transition: all 1.5s ease;
+}
+
+.inner:hover>img{
+    transform: scale(1.2);
 }

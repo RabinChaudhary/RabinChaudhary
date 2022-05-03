@@ -1,4 +1,4 @@
-<header class="shadow-lg ">
+<header class="shadow-lg sticky-top">
 
     <nav class="navbar navbar-expand" style="background-color: aliceblue">
         <div class="container">
@@ -80,9 +80,9 @@
                         <a href="#" class="nav-link text-dark">Contact Us</a>
                     </li>
                     <li class="">
-                        <a class="ms-auto" href="#"><button class="btn btn-success btn-lg text-light"
+                        <a class="ms-auto" href="{{url('/register')}}"><button class="btn btn-success btn-lg text-light"
                                 style="background-color:darkslategray; ">
-                                Login</button></a>
+                                Register</button></a>
                     </li>
 
 

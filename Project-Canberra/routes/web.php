@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::get('home', function () {
     return view('layouts.app');
 });
+
+Route::get('/register',function(){
+    return view('home.register');
+});
+

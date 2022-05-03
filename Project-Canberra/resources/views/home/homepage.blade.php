@@ -1,12 +1,106 @@
 @extends('layouts.app')
 @section('title', 'homepage')
 @section('content')
-    <div class="section bg-secondary">
+    @push('style')
+        <style>
+            .carousel-item {
+                height: 32rem;
+                background: black;
+                color: white;
+                position: relative;
+                background-position: center;
+                background-size: cover;
+            }
+
+            #carousel-container {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                padding-bottom: 50px;
+            }
+
+            .overlay-image {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                top: 0;
+                opacity:0.5;
+            }
+
+        </style>
+    @endpush
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="overlay-image" style="background:url({{ asset('img/data.jpg') }}); background-position: center;
+                        background-size: cover;"></div>
+                <div class="container" id="carousel-container">
+                    <h1>Data Analytics</h1>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
+                        necessitatibus
+                        dolor
+                        voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
+                    <a href="#" class="btn btn-lg btn-primary">Register Today</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="overlay-image" style="background:url({{ asset('img/web.jpg') }}); background-position: center;
+                    background-size: cover;"></div>
+                <div class="container" id="carousel-container">
+                    <h1>Web Development</h1>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
+                        necessitatibus
+                        dolor
+                        voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
+                    <a href="#" class="btn btn-lg btn-primary">Register Today</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="overlay-image" style="background:url({{ asset('img/cloud.jpg') }}); background-position: center;
+                    background-size: cover;"></div>
+                <div class="container" id="carousel-container">
+
+                    <h1>Cloud Computing</h1>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
+                        necessitatibus
+                        dolor
+                        voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
+                    <a href="#" class="btn btn-lg btn-primary">Register Today</a>
+                </div>
+            </div>
+        </div>
+        <a href="#myCarousel" class="carousel-control-prev" role="button" data-bs-slide="prev">
+            <span class="sr-only">Previous</span>
+            <span class="carousel-control-prev-icon" area-hidden="true"></span>
+        </a>
+        <a href="#myCarousel" class="carousel-control-next" role="button" data-bs-slide="next">
+            <span class="sr-only">Next</span>
+            <span class="carousel-control-next-icon" area-hidden="true"></span>
+        </a>
+    </div>
+
+    <div class="section" style="background: pink">
         <div class="container">
-            <div class="row g-3 my-4">
+            <div class="text-center pt-4">
+                <p style="color:orangered;">Stories</p>
+                <h1 class="fw-120" style="">Recent Blogs and Events</h1>
+            </div>
+            <div class="row g-3 mt-4 justify-content-space-around">
                 <div class="col-lg-4 col-md-6 col-12 d-flex align-items-stretch">
-                    <div class="card border-0">
-                        <img src="{{ asset('img/logo.png') }}" alt="" class="card-img" />
+                    <div class="card shadow-lg">
+                        <div class="inner">
+                            <img src="{{ asset('img/data.jpg') }}" alt="" class="card-img-top" />
+
+                        </div>
+
                         <div class="card-body">
 
                             <h1 class="card-title">Data Analytics</h1>
@@ -26,8 +120,11 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                    <div class="card">
-                        <img src="{{ asset('img/logo.png') }}" alt="" class="card-img-top" />
+                    <div class="card shadow-lg">
+                        <div class="inner">
+                            <img src="{{ asset('img/web.jpg') }}" alt="" class="card-img-top" />
+
+                        </div>
                         <div class="card-body">
                             <h1 class="card-title">Web Development</h1>
                             <p class="card-text">
@@ -39,8 +136,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                    <div class="card">
-                        <img src="{{ asset('img/logo.png') }}" alt="" class="card-img-top" />
+                    <div class="card shadow-lg">
+                        <div class="inner">
+                            <img src="{{ asset('img/cloud.jpg') }}" alt="" class="card-img-top" />
+                        </div>
                         <div class="card-body">
                             <h1 class="card-title">Cloud and Consulation Services</h1>
                             <p class="card-text">

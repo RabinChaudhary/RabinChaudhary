@@ -17,6 +17,7 @@
 
 <body>
     @include('inc.navbar')
+
     <div>@yield('content')</div>
     @include('inc.footer')
 

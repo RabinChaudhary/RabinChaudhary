@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,11 @@ Route::post('/user/resetpassword', 'App\Http\Controllers\UserController@resetpas
 
 Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name('user.edit');
 Route::post('/user/update', 'App\Http\Controllers\UserController@update')->name('user.update');
+
+
+Route::get('/admin',[UserController::class,'admin'])->name('admin');
+Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
+
 
 
 

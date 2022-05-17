@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title', 'login page')
+@section('title', 'Admin')
 @section('content')
     <div class="container mb-4">
         <div class="mx-auto" style="max-width:40rem; width:100%">
             <div class="bg-white rounded shadow  input-group-lg p-3 mt-5 w-lg-50">
                 <div class="login-form p-3">
-                    <form action="{{ route('user.auth') }}" method="post">
+                    <form action="{{ route('admin') }}" method="post">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <ul>
@@ -22,7 +22,7 @@
                         @csrf
                         <div class="error-msg center error-text"></div>
 
-                        <h2 class="fs-2 text-primary">LOGIN</h2>
+                        <h2 class="fs-2 text-primary">Welcome Admin!</h2>
                         <div class="row">
 
                             <input type="text" placeholder="Email or Username" name="email" id="email"
@@ -33,18 +33,12 @@
                             <input type="password" placeholder="Password" name="password" id="password"
                                 class="form-control my-3" autofocus>
                         </div>
-                        <div class="clearfix">
-                            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-                            <a href="{{ route('user.forgotpassword') }}" class="float-right">Forgot Password?</a>
-                        </div>
                         <div class="row">
                             <div class="d-flex justify-content-lg-end justify-content-center">
                                 <button class="btn btn-primary btn-lg w-20">Sign In</button>
                             </div>
                         </div>
                     </form>
-                    <p class="text-center">Dont 'have a account? <a href="{{ route('user.register') }}">Register</a>
-                    </p>
                 </div>
             </div>
         </div>

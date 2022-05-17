@@ -38,15 +38,15 @@ class UserController extends Controller
 
         //store data to the databse
 
-               
-            $user = new Users();
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->password = Hash::make($request->input('password'));
-            $user->address = $request->input('address');
-            $user->phone = $request->input('phone');
+
+        $user = new Users();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->address = $request->input('address');
+        $user->phone = $request->input('phone');
         //    $user->image = $request->file('image')->getClientOriginalName();
-    /*
+        /*
 
         $path = public_path('tmp/uploads');
 
@@ -61,13 +61,12 @@ class UserController extends Controller
 
             $user->image = $fileName;
             */
-            if($user->save()){
-                //$file->move($path, $fileName);
-                        
-                Session::flash('message', 'You have registered Successfully.');
-                return redirect()->route('user.register');
-            }
-        
+        if ($user->save()) {
+            //$file->move($path, $fileName);
+
+            Session::flash('message', 'You have registered Successfully.');
+            return redirect()->route('user.register');
+        }
     }
 
     public function login()
@@ -84,33 +83,34 @@ class UserController extends Controller
             ]
         );
 
-        
+
         $email = $request->input('email');
         $password = $request->input('password');
+        $admin = 'admin@admin.com';
+        if ($email = !$admin) {
+            $authUser = Users::where('email', $email)
+                ->first();
+            if (!empty($authUser)) {
 
-        $authUser = Users::where('email', $email)
-            ->first();
+                $dbPassword = $authUser->password;
 
+                if (Hash::check($password, $dbPassword)) {
 
-        if (!empty($authUser)) {
-
-            $dbPassword = $authUser->password;
-
-            if (Hash::check($password, $dbPassword)) {
-
-                $users = Users::all();  // select * from users;
-                return view('users.home', ['users' => $users]);
-                
+                    $users = Users::all();  // select * from users;
+                    return view('users.home', ['users' => $users]);
+                } else {
+                    Session::flash('autherror', 'Invalid username and password.');
+                    return redirect()->route('user.login');
+                }
             } else {
-                Session::flash('autherror', 'Invalid username and password.');
+                Session::flash('autherror', 'This email user does not exist.');
                 return redirect()->route('user.login');
             }
         } else {
-            Session::flash('autherror', 'This email user does not exist.');
+            Session::flash('autherror', 'You are not allowed to access admin page.');
             return redirect()->route('user.login');
         }
     }
-
     public function forgotpassword()
     {
         return view('users.forgotpassword');
@@ -163,34 +163,35 @@ class UserController extends Controller
         return view('users.view')->with($data);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
-    $user = Users::find($id); // select * from users where id = $id;
+        $user = Users::find($id); // select * from users where id = $id;
 
-    return view('users.edit',['user'=>$user]);
-
+        return view('users.edit', ['user' => $user]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $id = $request->input('user_id');
 
         $validation = $request->validate(
             [
                 'name' => 'required|max:50',
-                'email' => 'unique:users,email,'. $id,
+                'email' => 'unique:users,email,' . $id,
                 'address' => 'max:100',
-                'phone' => 'digits_between:10,15'.$id,
+                'phone' => 'digits_between:10,15' . $id,
             ]
         );
 
         //update the user data
 
-        $data =[
+        $data = [
             'name' => $request->input('name'),
-            'email'=>$request->input('email'),
-            'address'=>$request->input('address'),
-            'phone'=>$request->input('phone'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
         ];
 
         $user = Users::find($id);
@@ -199,8 +200,18 @@ class UserController extends Controller
         $user->address = $request->input('address');
         $user->phone = $request->input('phone');
         $user->save();
-        
-       Session::flash('message', 'You have registered Successfully.');
-       return view('users.edit',['user'=>$user]);
+
+        Session::flash('message', 'You have registered Successfully.');
+        return view('users.edit', ['user' => $user]);
+    }
+
+    public function admin()
+    {
+        return view('admin.admin');
+    }
+    public function dashboard()
+    {
+        return view('admin.dashboard');
     }
 }
+

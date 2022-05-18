@@ -60,7 +60,7 @@
                         necessitatibus
                         dolor
                         voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
-                    <a href="#" class="btn btn-lg btn-primary">Register Today</a>
+                    <a href="{{route('register')}}" class="btn btn-lg btn-primary">Register Today</a>
                 </div>
             </div>
             <div class="carousel-item">

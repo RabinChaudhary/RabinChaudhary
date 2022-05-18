@@ -26,8 +26,8 @@
             <div class="col">
                 <div class="d-flex justify-content-end gap-2">
                     <i class="fa-solid fa-globe my-auto"></i>
-                    <span class="span dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="span dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         International
                     </span>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -56,39 +56,50 @@
             <div class="collapse navbar-collapse text-center" id="navmenu">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a href="{{url('/')}}" class="nav-link text-dark">Home</a>
+                        <a href="{{ url('/') }}" class="nav-link text-dark">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Our Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Other Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">IT Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Making the Switch</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Enrollment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Contact Us</a>
-                    </li>
-                    <li class="">
-                        <a class="ms-auto" href="{{url('/user/register')}}"><button class="btn btn-success btn-lg text-light"
-                                style="background-color:darkslategray; ">
-                                Register</button></a>
-                    </li>
+
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a href="{{ route('login') }}" class="nav-link text-dark">Login</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="nav-link text-dark">Register</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item ">
+                            <a class="nav-link fw-bold">
+                                Welcome, {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+
+
+                </div>
+                </li>
+            @endguest
 
 
 
-                </ul>
-            </div>
+            </ul>
+        </div>
         </div>
     </nav>
 

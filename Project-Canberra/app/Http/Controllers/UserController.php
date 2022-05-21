@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function display(Request $request)
+    {
+        return view('users.display');
+    }
 
     public function index(Request $request)
     {
@@ -91,15 +97,18 @@ class UserController extends Controller
         $authUser = Users::where('email', $email)
             ->first();
 
-
         if (!empty($authUser)) {
-
             $dbPassword = $authUser->password;
-
             if (Hash::check($password, $dbPassword)) {
-
-                $users = Users::all();  // select * from users;
-                return view('users.home', ['users' => $users]);
+                Session::put('authEmail',$authUser->email);
+                if($authUser->member === "administrator"){
+                    //this is Admin user 
+                    return view('users.dashboard', ['res' => $authUser]);
+                }else{
+                    //this is normal user 
+                    return view('users.myProfile', ['res' => $authUser]);
+                }
+                exit;
                 
             } else {
                 Session::flash('autherror', 'Invalid username and password.');
@@ -203,4 +212,11 @@ class UserController extends Controller
        Session::flash('message', 'You have registered Successfully.');
        return view('users.edit',['user'=>$user]);
     }
-}
+
+    public function logout(Request $request) {
+        Session::flush();
+        Auth::logout();
+        return redirect('/user/login');
+    }
+
+} 

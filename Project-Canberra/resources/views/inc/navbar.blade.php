@@ -79,14 +79,24 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link text-dark">Contact Us</a>
                     </li>
+                    @if(session()->has('authEmail'))
+                    <li class="">
+                        <a class="ms-auto" href="{{url('/user/logout')}}"><button class="btn btn-success btn-lg text-light"
+                                style="background-color:darkslategray; ">
+                                Logout</button></a>
+                    </li>
+                    @else
                     <li class="">
                         <a class="ms-auto" href="{{url('/user/register')}}"><button class="btn btn-success btn-lg text-light"
                                 style="background-color:darkslategray; ">
                                 Register</button></a>
                     </li>
-
-
-
+                    <li class="">
+                        <a class="ms-auto" href="{{url('/user/login')}}"><button class="btn btn-success btn-lg text-light"
+                                style="background-color:darkslategray; ">
+                                Login</button></a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>

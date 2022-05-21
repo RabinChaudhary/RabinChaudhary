@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('home.homepage');
 });
 
-Route::get('home', function () {
-    return view('layouts.app');
-});
 
 Route::get('/user/register', 'App\Http\Controllers\UserController@register')->name('user.register');
 Route::get('/user/view', 'App\Http\Controllers\UserController@view')->name('user.view');
@@ -27,6 +24,7 @@ Route::post('/user/store', 'App\Http\Controllers\UserController@store')->name('u
 
 Route::get('/user/login', 'App\Http\Controllers\UserController@login')->name('user.login');
 Route::post('/user/auth', 'App\Http\Controllers\UserController@auth')->name('user.auth');
+Route::get('/user/logout', 'App\Http\Controllers\UserController@logout')->name('user.logout');
 
 Route::get('/user/forgotpassword', 'App\Http\Controllers\UserController@forgotpassword')->name('user.forgotpassword');
 Route::post('/user/resetpassword', 'App\Http\Controllers\UserController@resetpassword')->name('user.resetpassword');
@@ -34,5 +32,6 @@ Route::post('/user/resetpassword', 'App\Http\Controllers\UserController@resetpas
 Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name('user.edit');
 Route::post('/user/update', 'App\Http\Controllers\UserController@update')->name('user.update');
 
+Route::post('/user/display', 'App\Http\Controllers\UserController@display')->name('user.display');
 
 

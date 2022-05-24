@@ -1,5 +1,4 @@
 <header class="shadow-lg sticky-top">
-
     <nav class="navbar navbar-expand" style="background-color: aliceblue">
         <div class="container">
             <div class="col">
@@ -39,9 +38,6 @@
             </div>
         </div>
     </nav>
-
-
-
     <nav class="navbar navbar-expand-lg" style="background-color:white;">
         <div class="container">
             <a href="/" class="navbar-brand">EXTRATECH</a>
@@ -71,39 +67,40 @@
                                 <a href="{{ route('register') }}" class="nav-link text-dark">Register</a>
                             </li>
                         @endif
+                        @if(Route::has('admin'))
+                        <li class="nav-item ">
+                            <a class="nav-link fw-bold" href="{{ route('admin') }}">
+                                {{ __('Admin') }}
+                            </a>
+
+                        </li>
+                        @endif
+
                     @else
                         <li class="nav-item ">
-                            <a class="nav-link fw-bold">
+                            <a class="nav-link fw-bold" href="{{ route('home') }}">
                                 Welcome, {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                                                     document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                                        document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
                         </li>
-
-
                 </div>
                 </li>
             @endguest
-
-
-
             </ul>
         </div>
         </div>
     </nav>
-
-
-
-
 </header>

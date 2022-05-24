@@ -1,4 +1,4 @@
-<footer style="background: rgb(112, 14, 112); min-height:70%;">
+<footer style="background: rgb(112, 14, 112); min-height:70%;" class="sticky-footer">
     <div class="container">
         <div class="row justify-content-center pt-4">
             <div class="col">

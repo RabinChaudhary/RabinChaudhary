@@ -2,216 +2,168 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ResetPassword;
-use App\Models\Users;
+use App\Mail\StatusMail;
+use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class UserController extends Controller
 {
-
-    public function index(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        return view('home');
+        $users = User::all();
+
+        return view('users.list')->with([
+            'users' => $users
+        ]);
     }
 
-    public function register(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-
-        return view('users.register');
+        return view('users.add');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $validation = $request->validate(
-            [
-                'name' => 'required|max:50',
-                'email' => 'unique:users,email',
-                'password' => 'required|min:8|max:30|confirmed',
-                'address' => 'max:100',
-                'phone' => 'digits_between:10,15',
-                //'image' => 'required|images|mimes:jpeg,png,jpg|max:2048',
-            ]
-        );
-
-        //store data to the databse
-
-
-        $user = new Users();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->input('password'));
-        $user->address = $request->input('address');
-        $user->phone = $request->input('phone');
-        //    $user->image = $request->file('image')->getClientOriginalName();
-        /*
-
-        $path = public_path('tmp/uploads');
-
-        if (!file_exists($path) ) {
-            mkdir($path, 0777, true); // setting permission to folder
-        }
-
-        $file = $request->file('image');
-
-        $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
- 
-
-            $user->image = $fileName;
-            */
-        if ($user->save()) {
-            //$file->move($path, $fileName);
-
-            Session::flash('message', 'You have registered Successfully.');
-            return redirect()->route('user.register');
-        }
+        //
     }
 
-    public function login()
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        return view('users.login');
+        //
     }
 
-    public function auth(Request $request)
-    {
-        $validation = $request->validate(
-            [
-                'email' => 'email',
-                'password' => 'required',
-            ]
-        );
-
-
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $admin = 'admin@admin.com';
-        if ($email = !$admin) {
-            $authUser = Users::where('email', $email)
-                ->first();
-            if (!empty($authUser)) {
-
-                $dbPassword = $authUser->password;
-
-                if (Hash::check($password, $dbPassword)) {
-
-                    $users = Users::all();  // select * from users;
-                    return view('users.home', ['users' => $users]);
-                } else {
-                    Session::flash('autherror', 'Invalid username and password.');
-                    return redirect()->route('user.login');
-                }
-            } else {
-                Session::flash('autherror', 'This email user does not exist.');
-                return redirect()->route('user.login');
-            }
-        } else {
-            Session::flash('autherror', 'You are not allowed to access admin page.');
-            return redirect()->route('user.login');
-        }
-    }
-    public function forgotpassword()
-    {
-        return view('users.forgotpassword');
-    }
-
-    public function resetpassword(Request $request)
-    {
-        $validation = $request->validate(
-            [
-                'email' => 'email'
-            ]
-        );
-
-        $email = $request->input('email');
-
-        $authUser = Users::where('email', $email)
-            ->first();
-
-        if ($authUser) {
-
-            $digits = 6;
-            $pwd = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
-
-            $updatePassword = Users::where('id', $authUser->id)->update(['password' => Hash::make($pwd)]);
-
-            if ($updatePassword) {
-
-                $details = ['name' => $authUser->first_name, 'password' => $pwd];
-                Mail::to($email)->send(new ResetPassword($details));
-            }
-        } else {
-            Session::flash('autherror', 'This email user does not exist.');
-            return redirect()->route('user.login');
-        }
-
-
-        // send an emai from here
-    }
-
-    public function view(Request $request)
-    {
-        $name = $request->input('name');
-
-        $data = [
-            'name' => $name,
-            'age' => 20,
-            'gender' => 'male'
-        ];
-
-        return view('users.view')->with($data);
-    }
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-
-        $user = Users::find($id); // select * from users where id = $id;
+        $user = User::find($id); // select * from users where id = $id;
 
         return view('users.edit', ['user' => $user]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request)
     {
-
         $id = $request->input('user_id');
+        
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'unique:users,email,' . $id,
+            'phone' => 'min:10|required',
+            'address' => 'required',
+            'image' => 'image|nullable|max:1999',
 
-        $validation = $request->validate(
-            [
-                'name' => 'required|max:50',
-                'email' => 'unique:users,email,' . $id,
-                'address' => 'max:100',
-                'phone' => 'digits_between:10,15' . $id,
-            ]
-        );
 
-        //update the user data
+        ]);
 
-        $data = [
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'address' => $request->input('address'),
-            'phone' => $request->input('phone'),
-        ];
+        if (request()->hasFile('image')) {
+            //Get filename with the extension
+            $fileNameWithExt = request()->file('image')->getClientOriginalName();
+            //Get just filename\
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //Get just ext
+            $extension = request()->file('image')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            //upload the picture 
+            $path = request()->file('image')->storeAs('public/images', $fileNameToStore);
+        } 
 
-        $user = Users::find($id);
+        $user=User::find($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->address = $request->input('address');
         $user->phone = $request->input('phone');
+
+        if ($request->hasFile('image')) {
+            $user->image = $fileNameToStore;
+        }
         $user->save();
-
-        Session::flash('message', 'You have registered Successfully.');
-        return view('users.edit', ['user' => $user]);
+        Session()->flash('status', 'You have updated Successfully.');
+        return view('users.edit',['user'=>$user]);
+       
+        
     }
 
-    public function admin()
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        return view('admin.admin');
+        //
     }
-    public function dashboard()
+    public function status_update($id)
     {
-        return view('admin.dashboard');
+        $user = DB::table('users')
+            ->select('status')
+            ->where('id', '=', $id)
+            ->first();
+
+        if ($user->status == "active") {
+            $status = "inactive";
+        } else {
+            $status = "active";
+        }
+        $values = array('status' => $status);
+        DB::table('users')->where('id', $id)->update($values);
+        $person = User::find($id);
+        $status = $person->status;
+        $email = $person->email;
+        $name = $person->firstName;
+
+
+        $mailData = [
+            'title' => 'Notification',
+            'body' => 'Hi, ' . $name . ' your email ' . $email . ' is activated',
+            'name' => $name,
+            'email' => $email,
+            'status' => $status,
+
+        ];
+
+        Mail::to($email)->send(new StatusMail($mailData));
+        Session()->flash('success', 'Status has been updated successfully.');
+
+        return redirect()->back();
     }
 }
-

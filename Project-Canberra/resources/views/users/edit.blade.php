@@ -1,47 +1,118 @@
 @extends('layouts.app')
+@section('title', 'Update Page')
 @section('content')
-<div class="login-form">
-    <form action="{{route('user.update')}}" method="post">
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
 
-        @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-        @endif
 
-        @csrf
-        <h2 class="text-center">Update</h2>
-        <input type="hidden" name="user_id" value="{{$user->id}}" />
-        <div class="form-group">
-            <input name="first_name" type="text" class="form-control" placeholder="First Name" value={{$user->first_name}} required="required">
+    <div class="container py-5 h-99">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5" style="font-weight: bold">Update Your Profile</h3>
+
+
+                        <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+
+                            @if (session()->has('status'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('status') }}
+                                </div>
+                            @endif
+
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}" />
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="name">Name</label>
+
+                                        <input type="text" id="name" name="name" class="form-control form-control-lg"
+                                            value={{ $user->name }} class="@error('name') is-invalid @enderror">
+                                        @error('name')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <label for="image" class="form-label">Change your picture</label>
+                                    <input class="form-control form-control-lg" id="image" name="image"
+                                        value="{{ $user->image }}" type="file"
+                                        class="@error('image') is-invalid @enderror">
+                                    @error('image')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <img src="/storage/images/{{ $user->image }}" style="width:100%; "
+                                        alt="{{ $user->image }}">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="email">Email</label>
+                                        <input type="email" id="email" name="email" value={{ $user->email }}
+                                            class="form-control form-control-lg"
+                                            class="@error('email') is-invalid @enderror">
+                                        @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="phone">Phone Number</label>
+
+                                        <input type="text" id="phone" name="phone" value="{{ $user->phone }}"
+                                            class="form-control form-control-lg"
+                                            class="@error('phone') is-invalid @enderror">
+                                        @error('phone')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="phone">Address</label>
+
+                                        <input type="text" id="address" name="address" value="{{ $user->address }}"
+                                            class="form-control form-control-lg"
+                                            class="@error('address') is-invalid @enderror">
+                                        @error('address')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="mt-4 pt-2">
+                                <input class="btn btn-primary btn-lg" type="submit" name="submit_update" id="submit_update"
+                                    value="Update" />
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <input name="last_name" type="text" class="form-control" placeholder="Last Name" value={{$user->last_name}} required="required">
-        </div>
-        <div class="form-group">
-            <input name="email" type="text" class="form-control" placeholder="Email" value={{$user->email}} required="required">
-        </div>
-        <div class="form-group">
-            <input name="gender" type="text" class="form-control" placeholder="Gender" value={{$user->gender}} required="required">
-        </div>
-        <div class="form-group">
-            <input name="mobile" type="text" class="form-control" placeholder="Mobile" value={{$user->mobile}} required="required">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Update</button>
-        </div>
-        <!--   <div class="clearfix">
-            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>  
--->
-    </form>
-</div>
-@stop
+    </div>
+
+@endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,8 +38,9 @@ Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name(
 Route::post('/user/update', 'App\Http\Controllers\UserController@update')->name('user.update');
 
 
-Route::get('/admin',[UserController::class,'admin'])->name('admin');
-Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
+Route::post('/admin',[AdminController::class,'admin'])->name('admin');
+Route::get('/admin',[AdminController::class,'index']);
+
 
 
 
@@ -47,3 +49,11 @@ Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('users', App\Http\Controllers\UserController::class);
+
+Route::get('/status-update/{id}',[UserController::class,'status_update']);
+
+Route::get('user/edit/{id}',[UserController::class,'edit'])->name('edit');
+Route::post('user/edit',[UserController::class,'update'])->name('update');
+
+Route::post('users/create',[AdminController::class,'addUser'])->name('addUser');

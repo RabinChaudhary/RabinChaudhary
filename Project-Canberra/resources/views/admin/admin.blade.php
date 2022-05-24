@@ -26,12 +26,22 @@
                         <div class="row">
 
                             <input type="text" placeholder="Email or Username" name="email" id="email"
-                                class="form-control my-3" autofocus>
+                                class="form-control my-3 @error('email') is-invalid @enderror" autofocus>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="row">
 
                             <input type="password" placeholder="Password" name="password" id="password"
-                                class="form-control my-3" autofocus>
+                                class="form-control my-3 @error('password') is-invalid @enderror" autofocus>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="row">
                             <div class="d-flex justify-content-lg-end justify-content-center">

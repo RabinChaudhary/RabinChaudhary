@@ -12,7 +12,7 @@
 
                             <input type="text" placeholder="Email or Username" name="email" id="email"
                                 class="form-control my-3 @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email">
+                                value="{{ old('email') }}" autocomplete="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -22,7 +22,7 @@
                         <div class="row">
 
                             <input placeholder="Password" class="form-control my-3" id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
+                                class="form-control @error('password') is-invalid @enderror" name="password"
                                 autocomplete="current-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">

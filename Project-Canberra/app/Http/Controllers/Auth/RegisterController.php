@@ -68,6 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         if (request()->hasFile('image')) {
             //Get filename with the extension
             $fileNameWithExt = request()->file('image')->getClientOriginalName();
@@ -90,6 +91,7 @@ class RegisterController extends Controller
             'image'=>$fileNameToStore,
             'address'=>$data['address'],
         ]);
+       
         return $users;
     }
 }

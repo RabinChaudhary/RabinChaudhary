@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,31 +17,36 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//home
+Route::get('/', [PostController::class,'index']);
 
-Route::get('/', function () {
-    return view('home.homepage');
-});
 
-Route::get('home', function () {
-    return view('layouts.app');
-});
-
-Route::get('/user/register', 'App\Http\Controllers\UserController@register')->name('user.register');
-Route::get('/user/view', 'App\Http\Controllers\UserController@view')->name('user.view');
-Route::post('/user/store', 'App\Http\Controllers\UserController@store')->name('user.store');
-
-Route::get('/user/login', 'App\Http\Controllers\UserController@login')->name('user.login');
-Route::post('/user/auth', 'App\Http\Controllers\UserController@auth')->name('user.auth');
-
-Route::get('/user/forgotpassword', 'App\Http\Controllers\UserController@forgotpassword')->name('user.forgotpassword');
-Route::post('/user/resetpassword', 'App\Http\Controllers\UserController@resetpassword')->name('user.resetpassword');
-
-Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->name('user.edit');
-Route::post('/user/update', 'App\Http\Controllers\UserController@update')->name('user.update');
-
+// Admin ROutes
 
 Route::post('/admin',[AdminController::class,'admin'])->name('admin');
 Route::get('/admin',[AdminController::class,'index']);
+Route::get('/admin/logouts',[AdminController::class,'logouts'])->name('logouts');
+Route::get('/admin/{id}/edit', [AdminController::class,'edit'])->name('user.edit');
+Route::get('/admin/view', [AdminController::class,'getUsers'])->name('users.view');
+Route::get('/admin/add', [AdminController::class,'addUsers'])->name('users.add');
+Route::get('/admin/save',  [AdminController::class,'addUser']);
+Route::post('/admin/save', [AdminController::class,'addUser'])->name('users.save');
+Route::get('/admin/dashboard', [AdminController::class,'getDashboard'])->name('admin.dashboard');
+
+
+Route::post('/user/update', 'App\Http\Controllers\UserController@update')->name('user.update');
+
+
+//Post
+Route::get('/admin/post/add',[PostController::class,'add']);
+Route::post('/admin/post/add',[PostController::class,'store'])->name('addPost');
+Route::get('/admin/post/action',[PostController::class,'action'])->name('action');
+Route::get('/admin/post/action/edit/{id}',[PostController::class,'edit'])->name('edit');
+Route::post('/admin/post/action/edit',[PostController::class,'update'])->name('updatePost');
+Route::delete('/admin/post/action/delete/{id}',[PostController::class,'destroy'])->name('posts.destroy');
+
+
+
 
 
 
@@ -47,7 +54,7 @@ Route::get('/admin',[AdminController::class,'index']);
 
 
 Auth::routes();
-
+//user
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('users', App\Http\Controllers\UserController::class);
 
@@ -56,4 +63,3 @@ Route::get('/status-update/{id}',[UserController::class,'status_update']);
 Route::get('user/edit/{id}',[UserController::class,'edit'])->name('edit');
 Route::post('user/edit',[UserController::class,'update'])->name('update');
 
-Route::post('users/create',[AdminController::class,'addUser'])->name('addUser');

@@ -141,8 +141,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'status' => [
+            'in-active' => 'This user is not active',
         ],
     ],
 

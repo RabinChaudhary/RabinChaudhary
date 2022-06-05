@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Database\Eloquent\Collection;
 
 use App\Mail\StatusMail;
 use App\Models\User;
@@ -18,14 +19,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = User::all();
-
-        return view('users.list')->with([
-            'users' => $users
-        ]);
-    }
+    
 
     /**
      * Show the form for creating a new resource.

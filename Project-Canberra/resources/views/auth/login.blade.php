@@ -6,6 +6,11 @@
             <div class="bg-white rounded shadow  input-group-lg p-3 mt-5 w-lg-50">
                 <div class="login-form p-3">
                     <form method="POST" action="{{ route('login') }}">
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+                        @endif
                         @csrf
                         <h2 class="fs-2 text-primary">LOGIN</h2>
                         <div class="row">

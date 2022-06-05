@@ -38,34 +38,35 @@
             <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
         </ol>
 
+
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="overlay-image" style="background:url({{ asset('img/data.jpg') }}); background-position: center;
-                                    background-size: cover;"></div>
+                                                            background-size: cover;"></div>
                 <div class="container text-lg-start text-center" id="carousel-container">
                     <h1>Data Analytics</h1>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
                         necessitatibus
                         dolor
                         voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
-                    <a href="{{url('/register')}}" class="btn btn-lg btn-primary">Register Today</a>
+                    <a href="{{ Route('register') }}" class="btn btn-lg btn-primary">Register Today</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="overlay-image" style="background:url({{ asset('img/web.jpg') }}); background-position: center;
-                                background-size: cover;"></div>
+                                                        background-size: cover;"></div>
                 <div class="container text-lg-start text-center" id="carousel-container">
                     <h1>Web Development</h1>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet consequuntur quisquam
                         necessitatibus
                         dolor
                         voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
-                    <a href="{{route('register')}}" class="btn btn-lg btn-primary">Register Today</a>
+                    <a href="{{ Route('register') }}" class="btn btn-lg btn-primary">Register Today</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="overlay-image" style="background:url({{ asset('img/cloud.jpg') }}); background-position: center;
-                                background-size: cover;"></div>
+                                                        background-size: cover;"></div>
                 <div class="container text-lg-start text-center" id="carousel-container">
 
                     <h1>Cloud Computing</h1>
@@ -73,7 +74,7 @@
                         necessitatibus
                         dolor
                         voluptatum magnam! Repudiandae fugit iusto quas aspernatur.</p>
-                    <a href="#" class="btn btn-lg btn-primary">Register Today</a>
+                    <a href="{{ Route('register') }}" class="btn btn-lg btn-primary">Register Today</a>
                 </div>
             </div>
         </div>
@@ -86,8 +87,11 @@
             <span class="carousel-control-next-icon" area-hidden="true"></span>
         </a>
     </div>
-    <section class="services my-2" style="min-height:max-content;">
+
+
+    <section class="services" style="min-height:max-content; background-color:#6fa8dc; ">
         <div class="container fluid">
+
             <div class="row justify-content-center align-items-center pb-o">
                 <div class="col-lg-6 col-12">
                     <div class="text-start pt-4">
@@ -103,7 +107,8 @@
                 <div class="col-lg-6 col-12">
                     <div class="inner">
                         <img src="{{ asset('img/map.jpg') }}" style="background-position: center;
-                        background-size: cover; max-width:100%; min-height:100%;" alt="australia map">
+                                                background-size: cover; max-width:100%; min-height:100%;"
+                            alt="australia map">
                     </div>
                 </div>
             </div>
@@ -113,72 +118,160 @@
 
     </section>
 
-    <div class="section" style="background: pink; min-height:max-content;">
+
+    <div class="section" style="background:#ffd966;">
         <div class="container py-5">
-            <div class="text-center pt-4">
-                <p style="color:orangered;">Stories</p>
-                <h1 class="fw-120" style="">Recent Blogs and Events</h1>
-            </div>
-            <div class="row g-3 mt-4 justify-content-space-around">
-                <div class="col-lg-4 col-md-6 col-12 d-flex align-items-stretch">
-                    <div class="card shadow-lg">
-                        <div class="inner">
-                            <img src="{{ asset('img/data.jpg') }}" alt="" class="card-img-top" />
+            <div id="multi-item-example"  height="20vh;" class="carousel slide carousel-multi-item" data-ride="carousel">
 
-                        </div>
-
-                        <div class="card-body">
-
-                            <h1 class="card-title">Data Analytics</h1>
-                            <p class="card-text">
-                                With utmost focus on customer success, we build end-to-end technology systems that help
-                                businesses
-                                grow and transform. We offer a full-scale digital ecosystem which includes World Class
-                                software’s,
-                                Cloud Platforms, Productivity & Collaboration Suites, Monitoring Tools, International
-                                Payments
-                                and
-                                Startup Cloud Funding among others.
-                                Our certified specialists and professional developers with their technical prowess and
-                                business insights are here to work with you and make a positive different in organization’s
-                                workflow and bottom line.</p>
-                        </div>
-                    </div>
+                <!--Controls-->
+                <div class="controls-top d-flex gap-4 justify-content-center">
+                    <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i
+                            class="fas fa-chevron-left fs-5"></i></a>
+                    <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
+                            class="fas fa-chevron-right fs-5"></i></a>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                    <div class="card shadow-lg">
-                        <div class="inner">
-                            <img src="{{ asset('img/web.jpg') }}" alt="" class="card-img-top" />
+                <!--/.Controls-->
 
+                <!--Indicators-->
+                <ol class="carousel-indicators">
+                    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                    <li data-target="#multi-item-example" data-slide-to="1"></li>
+
+
+                </ol>
+                <!--/.Indicators-->
+
+                <!--Slides-->
+                <div class="carousel-inner d-sm-flex" role="listbox">
+
+                    <!--First slide-->
+                    <div class="row carousel-item active" style="background:transparent;">
+
+                        <div class="col-md-4 col-12" style="float:left">
+                            <div class="card mb-2">
+                                <img class="card-img-top" src="{{ asset('img/web.jpg') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title">Card title</h4>
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the
+                                        card's content.</p>
+                                    <a class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h1 class="card-title">Web Development</h1>
-                            <p class="card-text">
-                                Empower your business by hiring manged IT services enabled by technology experts who drive
-                                business
-                                growth using modern tools as focus on critical business tasks.
-                            </p>
+
+                        <div class="col-md-4 col-12" style="float:left">
+                            <div class="card mb-2">
+                                <img class="card-img-top" src="{{ asset('img/cloud.jpg') }}" alt="Card image cap">
+                                <div class="card-body d-md-block d-none">
+                                    <h4 class="card-title">Card title</h4>
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the
+                                        card's content.</p>
+                                    <a class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="col-md-4 col-12" style="float:left">
+                            <div class="card mb-2">
+                                <img class="card-img-top" src="{{ asset('img/web.jpg') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title">Web Development</h4>
+                                    <p class="card-text">Empower your business by hiring manged IT services enabled by
+                                        technology experts who drive
+                                        business
+                                        growth using modern tools as focus on critical business tasks.</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                    <div class="card shadow-lg">
-                        <div class="inner">
-                            <img src="{{ asset('img/cloud.jpg') }}" alt="" class="card-img-top" />
+                    <!--/.First slide-->
+
+                    <!--Second slide-->
+                   
+                    <!--/.Second slide-->
+
+                    <div class="row carousel-item" style="background:transparent; overflow-y:scroll">
+                        
+                        @foreach($posts as $post)
+                      
+                        <div class="col-md-4 col-12" style="float:left">
+                            <div class="card mb-2">
+                                
+                                    <img class="card-img-top"
+                                        src="/storage/images/{{$post->image_path}}"
+                                        alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ $post->title }}</h4>
+                                        <p class="card-text">{{ $post->content }}</p>
+                                        <cite  class="text-end">Author: <a class="btn btn-primary">{{ $post->person->name }}</a></cite  class="text-end">
+
+                                    </div>
+                                   
+                            </div>
+                           
                         </div>
-                        <div class="card-body">
-                            <h1 class="card-title">Cloud and Consulation Services</h1>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque facilis accusantium dolor
-                                nisi
-                                reprehenderit expedita incidunt quibusdam illum atque quod!
-                            </p>
+                        @endforeach
+
+                        @foreach($posts as $post)
+
+                        <div class="col-md-4 col-12" style="float:left">
+
+                            <div class="card mb-2">
+                               
+                                    <img class="card-img-top"
+                                        src="/storage/images/{{$post->image_path}}"
+                                        alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ $post->title }}</h4>
+                                        <p class="card-text">{{ $post->content }}</p>
+                                        <cite>Author: <a class="btn btn-primary">{{ $post->person->name }}</a></cite  class="text-end">
+                                    </div>
+                               
+                            </div>
+                           
                         </div>
+
+                        @endforeach
+                        @foreach($posts as $post)
+
+                        <div class="col-md-4 col-12" style="float:left">
+
+                            <div class="card mb-2">
+
+                                    <img class="card-img-top"
+                                        src="/storage/images/{{$post->image_path}}"
+                                        alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ $post->title }}</h4>
+                                        <p class="card-text">{{ $post->content }}</p>
+                                        <cite  class="text-end">Author: <a class="btn btn-primary">{{ $post->person->name }}</a></cite  class="text-end">
+
+                                    </div>
+                       
+                                    
+                            </div>
+                            
+                        </div>
+                        @endforeach
+
                     </div>
+
+
+
                 </div>
+                <!--/.Slides-->
+
 
             </div>
         </div>
     </div>
+
+
 
 @endsection

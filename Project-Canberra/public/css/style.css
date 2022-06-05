@@ -1,8 +1,8 @@
 p {
     font-family: "GTWalsheimPro", Helvetica, Arial, Lucida, sans-serif;
 }
-html{
-    height:100%;
+html {
+    height: 100%;
 }
 .navbar-toggler {
     width: 20px;
@@ -21,6 +21,12 @@ html{
 .navbar-toggler span {
     margin: 0;
     padding: 0;
+}
+a:hover{
+    color:white;
+}
+a:active{
+    color:white;
 }
 
 .toggler-icon {
@@ -76,12 +82,41 @@ html{
         rgba(0, 212, 255, 1) 100%
     );
 }
+
+a.navbar-brand:hover {
+    transform: rotate(10deg);
+}
 li.nav-item {
     font-size: large;
 }
+li.nav-item > a {
+    color: #6fa8dc;
+}
+li.nav-item > a:hover {
+    color: whitesmoke;
+}
+li.nav-item > a:active {
+    color: whitesmoke;
+}
 
+button:focus {
+    outline: 0;
+}
+
+a:after {
+    display: block;
+    content: "";
+    border-bottom: solid 3px #6fa8dc;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+
+a:hover:after {
+    color: #6fa8dc;
+    transform: scaleX(1);
+}
 .card {
-    background: pink;
+    background: #f44336;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -106,14 +141,16 @@ li {
     outline: none;
     line-height: 2.5em;
 }
-h2:after,h1:after {
+h2:after,
+h1:after {
     display: block;
     content: "";
     border-bottom: solid 3px bisque;
     transform: scaleX(0);
     transition: transform 250ms ease-in-out;
 }
-h2:hover:after,h1:hover:after{
+h2:hover:after,
+h1:hover:after {
     transform: scaleX(1);
 }
 
@@ -124,24 +161,25 @@ h2:hover:after,h1:hover:after{
     margin-left: -300px;
     background-color: #100901;
     transition: 0.5s;
-  }
-  .nav-link:active,
-  .nav-link:focus,
-  .nav-link:hover {
+}
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
     background-color: #ffffff26;
-  }
-  .my-container {
+}
+.my-container {
     transition: 0.4s;
-  }
-  .active-nav {
+}
+.active-nav {
     margin-left: 0;
-  }
-  /* for main section */
-  .active-cont {
+}
+/* for main section */
+.active-cont {
     margin-left: 180px;
-  }
-  #menu-btn {
+}
+#menu-btn {
     background-color: #100901;
     color: #fff;
     margin-left: -62px;
-  }
+}
+

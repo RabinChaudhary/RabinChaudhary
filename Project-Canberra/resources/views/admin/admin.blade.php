@@ -6,19 +6,10 @@
             <div class="bg-white rounded shadow  input-group-lg p-3 mt-5 w-lg-50">
                 <div class="login-form p-3">
                     <form action="{{ route('admin') }}" method="post">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         @if (Session::has('autherror'))
                             <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
                                 {{ Session::get('autherror') }}</p>
-                        @endif
+                        @endif 
                         @csrf
                         <div class="error-msg center error-text"></div>
 

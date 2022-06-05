@@ -1,46 +1,32 @@
 <header class="shadow-lg sticky-top">
-    <nav class="navbar navbar-expand" style="background-color: aliceblue">
+    <nav class="navbar navbar-expand" style="background-color: 	#6fa8dc; height:2.5rem;">
         <div class="container">
-            <div class="col">
-                <ul class="navbar-nav">
-                    <li class="nav-item ms-0">
-                        <a href="" class="nav-link"><i class="fa-brands fa-facebook text-primary"
-                                style="font-size:1.5rem;"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link"><i class="fa-brands fa-twitter text-primary"
-                                style="font-size:1.5rem;"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link"><i class="fa-brands fa-linkedin text-muted"
-                                style="font-size:1.5rem;"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link"><i class="fa-brands fa-instagram-square text-muted"
-                                style="font-size:1.5rem;"></i></a>
-                    </li>
 
-                </ul>
-            </div>
-            <div class="col">
-                <div class="d-flex justify-content-end gap-2">
-                    <i class="fa-solid fa-globe my-auto"></i>
-                    <span class="span dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        International
-                    </span>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Australia</a>
-                        <a class="dropdown-item" href="#">USA</a>
-                        <a class="dropdown-item" href="#">UK</a>
-                    </div>
-                </div>
-            </div>
+            <ul class="navbar-nav mx-lg-auto ">
+                <li class="nav-item ms-0">
+                    <a href="" class="nav-link"><i class="fa-brands fa-facebook text-primary"
+                            style="font-size:1.5rem;"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link"><i class="fa-brands fa-twitter text-primary"
+                            style="font-size:1.5rem;"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link"><i class="fa-brands fa-linkedin text-muted"
+                            style="font-size:1.5rem;"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link"><i class="fa-brands fa-instagram-square text-muted"
+                            style="font-size:1.5rem;"></i></a>
+                </li>
+
+            </ul>
+
         </div>
     </nav>
-    <nav class="navbar navbar-expand-lg" style="background-color:white;">
+    <nav class="navbar navbar-expand-lg" style="background-color:	#134f5c">
         <div class="container">
-            <a href="/" class="navbar-brand">EXTRATECH</a>
+            <a href="/" class="navbar-brand" style="color:#6fa8dc">EXTRATECH</a>
             <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around" type="button"
                 data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -52,30 +38,29 @@
             <div class="collapse navbar-collapse text-center" id="navmenu">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a href="{{ url('/') }}" class="nav-link text-dark">Home</a>
+                        <a href="{{ url('/') }}" class="nav-link">Home</a>
                     </li>
 
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a href="{{ route('login') }}" class="nav-link text-dark">Login</a>
+                                <a href="{{ route('login') }}" class="nav-link">Login</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a href="{{ route('register') }}" class="nav-link text-dark">Register</a>
+                                <a href="{{ route('register') }}" class="nav-link">Register</a>
                             </li>
                         @endif
-                        @if(Route::has('admin'))
-                        <li class="nav-item ">
-                            <a class="nav-link fw-bold" href="{{ route('admin') }}">
-                                {{ __('Admin') }}
-                            </a>
+                        @if (Route::has('admin'))
+                            <li class="nav-item ">
+                                <a class="nav-link fw-bold" href="{{ route('admin') }}">
+                                    {{ __('Admin') }}
+                                </a>
 
-                        </li>
+                            </li>
                         @endif
-
                     @else
                         <li class="nav-item ">
                             <a class="nav-link fw-bold" href="{{ route('home') }}">
@@ -85,12 +70,12 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                     document.getElementById('logout-form').submit();">
+                                                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                                            document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

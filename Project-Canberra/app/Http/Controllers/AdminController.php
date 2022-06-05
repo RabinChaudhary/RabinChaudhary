@@ -4,12 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
+    public function getUsers()
+    {
+
+
+        return view('users.view');
+    }
+    public function addUsers()
+    {
+
+        return view('users.add');
+    }
+    public function getDashboard()
+    {
+
+        return view('admin.dashboard');
+    }
     public function index()
     {
         return view('admin.admin');
@@ -26,17 +43,17 @@ class AdminController extends Controller
                 'address' => ['required'],
             ]
         );
-        if (request()->hasFile('image')) {
+        if ($request->hasFile('image')) {
             //Get filename with the extension
-            $fileNameWithExt = request()->file('image')->getClientOriginalName();
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
             //Get just filename\
             $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             //Get just ext
-            $extension = request()->file('image')->getClientOriginalExtension();
+            $extension = $request->file('image')->getClientOriginalExtension();
             //filename to store
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             //upload the picture 
-            $path = request()->file('image')->storeAs('public/images', $fileNameToStore);
+            $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
         } else {
             $fileNameToStore = "noimage.jpg";
         }
@@ -48,47 +65,50 @@ class AdminController extends Controller
         $user->phone = $request->input('phone');
         $user->status = $request->input('status');
         $user->image = $fileNameToStore;
-        if ($user->save()) {
-            Session()->flash('message', 'New user has been added successfully.');
-            return redirect()->back();
-        }
+        $user->save();
+
+        Session::flash('success', 'You have registered Successfully.');
+        return view('users.add');
     }
+
 
 
     public function admin(Request $request)
     {
+        
         $request->validate(
             [
-                'email' => 'email',
-                'password' => 'required',
+                'email' => ['required', 'email'],
+                'password' => ['required'],
             ]
         );
 
-
         $email = $request->input('email');
         $password = $request->input('password');
-        $admin = 'admin@admin.com';
-        if ($email = $admin) {
-            $authUser = User::where('email', $email)
-                ->first();
-            if (!empty($authUser)) {
+        $admin = "admin@admin.com";
+        if ($email == $admin) {
+            $authUser = User::where('email', $email)->first();
+            Session::put('admin', $authUser);
 
-                $dbPassword = $authUser->password;
-
-                if (Hash::check($password, $dbPassword)) {
-                    $users = User::all();  // select * from users
-                    return view('admin.dashboard', ['users' => $users]);
-                } else {
-                    Session::flash('email', 'Invalid admin credentials');
-                    return redirect()->back();
-                }
+            $dbPassword = $authUser->password;
+            if (Hash::check($password, $dbPassword)) {
+                $users = User::all();
+                Session::put('users', $users);
+                return view('admin.dashboard');
+                // , ['users' => $users, 'admin' => $authUser]);
             } else {
-                Session::flash('email', 'You are not an admin');
+                Session::flash('autherror', 'Invalid admin credentials');
                 return redirect()->back();
             }
         } else {
-            Session::flash('email', 'You are not allowed to access admin page.');
+            Session::flash('autherror', 'You are not allowed to access admin page.');
             return redirect()->back();
         }
+    }
+    public function logouts()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect('/admin');
     }
 }

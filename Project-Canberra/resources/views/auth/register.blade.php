@@ -7,12 +7,17 @@
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
                     <h2 class="fs-2 text-primary">Create New Account</h2>
+                    @if (session()->has('success'))
+                                    <div class="alert alert-success">
+                                        {{ session()->get('success') }}
+                                    </div>
+                                @endif
                     <div class="row">
                         <div class="col-lg-6 col-12">
 
                             <input id="name" type="text" placeholder="Full Name"
                                 class="form-control my-3 @error('name') is-invalid @enderror" name="name"
-                                value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                value="{{ old('name') }}" autocomplete="name" autofocus>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -30,7 +35,7 @@
                             @enderror
 
                             <input id="password" type="password" placeholder="Password"
-                                class="form-control my-3 @error('password') is-invalid @enderror" name="password" required
+                                class="form-control my-3 @error('password') is-invalid @enderror" name="password" 
                                 autocomplete="new-password">
 
                             @error('password')
@@ -52,7 +57,7 @@
                         <div class="col-lg-6 col-12">
                             <input id="email" type="email" placeholder="Email"
                                 class="form-control my-3 @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email">
+                                value="{{ old('email') }}"  autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -67,7 +72,7 @@
                                 </span>
                             @enderror
                             <input id="password-confirm" placeholder="Confirm Password" type="password"
-                                class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                class="form-control" name="password_confirmation"  autocomplete="new-password">
                         </div>
 
 

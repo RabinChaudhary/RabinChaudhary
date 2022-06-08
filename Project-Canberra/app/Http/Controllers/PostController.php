@@ -18,6 +18,7 @@ class PostController extends Controller
     {
        return view('home.homepage')->with('posts',Post::orderBy('updated_at','DESC')->get());
     }
+    
 
 
     /**
@@ -83,9 +84,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function contact()
     {
-        //
+        return view('home.contact');
     }
     public function action()
 

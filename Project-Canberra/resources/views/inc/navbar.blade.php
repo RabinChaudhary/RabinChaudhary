@@ -40,9 +40,20 @@
                     <li class="nav-item">
                         <a href="{{ url('/') }}" class="nav-link">Home</a>
                     </li>
+                    
 
                     @guest
                         @if (Route::has('login'))
+                            
+                            <li class="nav-item">
+                                <a href="#myCarousel" class="nav-link">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#blogs" class="nav-link">Blogs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('contact') }}" class="nav-link">Contact</a>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{ route('login') }}" class="nav-link">Login</a>
                             </li>
@@ -53,14 +64,7 @@
                                 <a href="{{ route('register') }}" class="nav-link">Register</a>
                             </li>
                         @endif
-                        @if (Route::has('admin'))
-                            <li class="nav-item ">
-                                <a class="nav-link fw-bold" href="{{ route('admin') }}">
-                                    {{ __('Admin') }}
-                                </a>
-
-                            </li>
-                        @endif
+                       
                     @else
                         <li class="nav-item ">
                             <a class="nav-link fw-bold" href="{{ route('home') }}">
@@ -68,13 +72,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item text-light" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                         document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -119,7 +119,7 @@
     </section>
 
 
-    <div class="section" style="background:#ffd966;">
+    <div class="section" id="blogs" style="background:#ffd966;">
         <div class="container py-5">
             <div id="multi-item-example"  height="20vh;" class="carousel slide carousel-multi-item" data-ride="carousel">
 

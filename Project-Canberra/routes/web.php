@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 //home
 Route::get('/', [PostController::class,'index']);
+Route::get('/contact', [PostController::class,'contact'])->name('contact');
 
 
 // Admin ROutes

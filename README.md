@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @RabinChaudhary
 - 👀 I’m interested in coding and building different websites.
-- 🌱 I’m currently learning PHP and Java
+- 🌱 I’m currently learning PHP, its Framework Laravel, Rest API
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me 
 

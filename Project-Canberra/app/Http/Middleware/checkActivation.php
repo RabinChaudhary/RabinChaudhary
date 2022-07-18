@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class Administrator
+class checkActivation
 {
     /**
      * Handle an incoming request.
@@ -16,10 +17,10 @@ class Administrator
      */
     public function handle(Request $request, Closure $next)
     {
-       if(Session('logged_in')==false){
-            return redirect()->to('/admin');
-        } 
+
+        if(Auth::check() && Auth::user()->status=='inactive'){
+            return redirect('/login');
+        }
         return $next($request);
-        
     }
 }

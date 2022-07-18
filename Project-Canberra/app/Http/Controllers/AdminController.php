@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
+    public function __construct(){
+        $this->middleware('administrator')->only('getUsers','addUsers','getDashboard');
+    }
     public function getUsers()
     {
-
-
         return view('users.view');
     }
     public function addUsers()
@@ -88,12 +89,16 @@ class AdminController extends Controller
         $admin = "admin@admin.com";
         if ($email == $admin) {
             $authUser = User::where('email', $email)->first();
+            
             Session::put('admin', $authUser);
 
             $dbPassword = $authUser->password;
             if (Hash::check($password, $dbPassword)) {
                 $users = User::all();
                 Session::put('users', $users);
+                Session::put('logged_in',$logged_in=true);
+              
+                
                 return view('admin.dashboard');
                 // , ['users' => $users, 'admin' => $authUser]);
             } else {
@@ -107,6 +112,7 @@ class AdminController extends Controller
     }
     public function logouts()
     {
+        Session::put('logged_in',$logged_in=false);
         Session::flush();
         Auth::logout();
         return redirect('/admin');

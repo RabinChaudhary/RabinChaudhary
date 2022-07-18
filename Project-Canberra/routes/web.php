@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomLoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
@@ -55,6 +56,10 @@ Route::delete('/admin/post/action/delete/{id}',[PostController::class,'destroy']
 
 
 Auth::routes();
+Route::get('/login',[CustomLoginController::class,'index']);
+Route::post('/login',[CustomLoginController::class,'login'])->name('login');
+Route::post('/logout',[CustomLoginController::class,'logout'])->name('logout');
+
 //user
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('users', App\Http\Controllers\UserController::class);
